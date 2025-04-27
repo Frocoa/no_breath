@@ -13,7 +13,7 @@ public class CharacterInputcontroller : MonoBehaviour
     public void Awake()
     {
         inventoryManager = InventoryManager.Instance;
-        inventoryManager.AddItem(new Seed("Semilla", plantPrefab));
+        //inventoryManager.AddItem(new Seed("Semilla", plantPrefab));
         
     }
 

@@ -1,18 +1,17 @@
 using UnityEngine;
 using Assets.Scripts.Inventory;
 
+[CreateAssetMenu(fileName = "Seed", menuName = "Item/Seed", order = 1)]
 public class Seed : Item
 {
-    public GameObject Plant { get; private set; }
+    [SerializeField]
+    private GameObject plant;
 
-    public Seed(string name, GameObject plant) : base(name)
-    {
-        Plant = plant;
-    }
-    
+    public GameObject Plant => plant;
+
     public override void Use()
     {
-        Debug.Log($"Using item: {name}");
+        Debug.Log($"Using item: {ItemName}");
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {

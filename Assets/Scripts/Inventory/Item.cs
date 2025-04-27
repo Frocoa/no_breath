@@ -2,15 +2,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Inventory
 {
-    public abstract class Item
+    public abstract class Item : ScriptableObject
     {
-        protected string name;
+        [SerializeField]
+        private string itemName;
 
-        public Item(string name)
-        {
-            this.name = name;
-        }
-        
+        public string ItemName => itemName;
+
         public abstract void Use();
     }
 }
