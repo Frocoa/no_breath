@@ -17,6 +17,10 @@ namespace Assets.Scripts.Player
 
         public void Awake()
         {
+            TickManager.Instance.SubscribeToRandomTick(() => {
+            Debug.Log("Random Tick");
+
+        });
             inventoryManager = InventoryManager.Instance;
             inventoryManager.AddItem(grassSeed);
             
