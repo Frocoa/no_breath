@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Inventory
 {
@@ -50,6 +51,20 @@ namespace Assets.Scripts.Inventory
                 return inventory[currentItemIndex];
             }
             return null;
+        }
+
+        public void UseHeldItem(GameObject user)
+        {
+            Item item = GetHeldItem();
+            if (item != null)
+            {
+                item.Use(user);
+                RemoveItem(item);
+            }
+            else
+            {
+                Debug.Log("No item to use.");
+            }
         }
     }
 }

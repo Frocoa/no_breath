@@ -9,18 +9,9 @@ public class Seed : Item
 
     public GameObject Plant => plant;
 
-    public override void Use()
+    public override void Use(GameObject player)
     {
-        Debug.Log($"Using item: {ItemName}");
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            Vector3 position = player.transform.position;
-            Object.Instantiate(Plant, position, Quaternion.identity);
-        }
-        else
-        {
-            Debug.LogError("Player not found!");
-        }
+        Vector3 position = player.transform.position;
+        ItemFactory.Instance.SpawnItem(plant, position);
     }
 }

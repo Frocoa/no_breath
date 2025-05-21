@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43dbf50e7f2617a4f84ea08420955a3a, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  itemName: 
-  plant: {fileID: 0}
+  itemName: Grass
+  plant: {fileID: 6813505097451062511, guid: f99455f1d72e0a84780bb5704c6195e2, type: 3}
