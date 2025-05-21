@@ -14,6 +14,11 @@ public class CharacterInputcontroller : MonoBehaviour
     {
         inventoryManager = InventoryManager.Instance;
         //inventoryManager.AddItem(new Seed("Semilla", plantPrefab));
+
+        TickManager.Instance.SubscribeToRandomTick(() => {
+            Debug.Log("Random Tick");
+
+        });
         
     }
 
