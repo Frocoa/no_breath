@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private int growthStage = 0;
+    private int timeToGrow = 5;
+    private int stageProgress = 0;
+
+    void Awake()
     {
-        
+        TickManager.Instance.SubscribeToRandomTick(Grow);
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Grow()
     {
-        
+        stageProgress++;
+        if (stageProgress >= timeToGrow)
+        {
+            growthStage++;
+            stageProgress = 0;
+            Debug.Log("Crop has grown to stage: " + growthStage);
+        }
     }
 }

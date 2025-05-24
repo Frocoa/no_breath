@@ -19,7 +19,7 @@ public class TickManager : MonoBehaviour
             ExecuteMegaTick();
         }
     }
-    private List<Action> TickEvents = new List<Action>();
+    private readonly List<Action> TickEvents = new();
 
     public void SubscribeToRandomTick(Action action)
     {
@@ -29,10 +29,8 @@ public class TickManager : MonoBehaviour
 
     private void ExecuteMegaTick()
     {
-        Debug.Log("Mega Tick Executed");
         foreach (var tickEvent in TickEvents)
         {
-            Debug.Log("Executing tick event");
             tickEvent?.Invoke();
         }
     }
