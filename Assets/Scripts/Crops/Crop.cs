@@ -6,7 +6,7 @@ public class Crop : MonoBehaviour
     private int timeToGrow = 5;
     private int stageProgress = 0;
 
-    void Awake()
+    void Start()
     {
         TickManager.Instance.SubscribeToRandomTick(Grow);
 

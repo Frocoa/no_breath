@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Inventory
 {
     public class ItemFactory : MonoBehaviour {
-        // Implementación del singleton para facilitar el acceso global
+
+        [SerializeField]
+        private Tilemap objectTilemap;
         public static ItemFactory Instance;
 
         private void Awake() {
@@ -15,8 +18,15 @@ namespace Assets.Scripts.Inventory
             }
         }
 
-        public GameObject SpawnItem(GameObject prefab, Vector3 position) {
-            GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+        private Vector3 WorldToCell(Vector3 worldPosition)
+        {
+            Vector3Int cellPosition = objectTilemap.WorldToCell(worldPosition);
+            return objectTilemap.GetCellCenterWorld(cellPosition);
+        }
+        public GameObject SpawnItem(GameObject prefab, Vector3 position)
+        {
+            Vector3 cellPosition = WorldToCell(position);
+            GameObject obj = Instantiate(prefab, cellPosition, Quaternion.identity);
             return obj;
         }
     }
