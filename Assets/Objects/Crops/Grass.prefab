@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -122714968, guid: cf548d21b47a1ef4c8bb91dc8e79b740, type: 3}
+  m_Sprite: {fileID: -4965553739594148211, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,3 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdeda0f1a59f254c9d835b15afcaf5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  growthStageSprites:
+  - {fileID: -4965553739594148211, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
+  - {fileID: -2491624659041743377, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
+  - {fileID: -6030434150411226544, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
+  - {fileID: -3755228748222821808, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
+  - {fileID: -5501630112818903837, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
+  - {fileID: 5306446809137559511, guid: bbea7994485f5c94a9092b5230810a63, type: 3}
