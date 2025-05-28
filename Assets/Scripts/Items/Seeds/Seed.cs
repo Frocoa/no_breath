@@ -9,9 +9,13 @@ public class Seed : Item
 
     public GameObject Plant => plant;
 
+    public override void Use(GameObject player, Vector2 position)
+    {
+        ItemFactory.SpawnItem(plant, position);
+    }
     public override void Use(GameObject player)
     {
         Vector3 position = player.transform.position;
-        ItemFactory.Instance.SpawnItem(plant, position);
+        ItemFactory.SpawnItem(plant, position);
     }
 }

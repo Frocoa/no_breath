@@ -10,5 +10,6 @@ namespace Assets.Scripts.Inventory
         public string ItemName => itemName;
 
         public abstract void Use(GameObject player);
+        public abstract void Use(GameObject player, Vector2 position);
     }
 }

@@ -12,7 +12,10 @@ namespace Assets.Scripts.Player
         [SerializeField] private Seed grassSeed;
         [SerializeField] private float speed = 10f;
 
+        [SerializeField] private Grid grid;
+
         private Vector2 moveInput;
+        private Vector2 mousePosition;
         private Rigidbody2D rb;
 
         private void Awake()
@@ -21,6 +24,7 @@ namespace Assets.Scripts.Player
             inventoryManager.AddItem(grassSeed);
 
             rb = GetComponent<Rigidbody2D>();
+
         }
 
         private void FixedUpdate()
@@ -45,7 +49,8 @@ namespace Assets.Scripts.Player
         {
             if (context.phase == InputActionPhase.Performed)
             {
-                inventoryManager.UseHeldItem(gameObject);
+
+                inventoryManager.UseHeldItem(gameObject, mousePosition);
             }
         }
 
@@ -59,6 +64,24 @@ namespace Assets.Scripts.Player
                 else if (scrollValue < 0)
                     inventoryManager.ChangeItem(-1);
             }
+        }
+        public void MousePositionUpdate(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Vector2 mousePositionScreen = context.ReadValue<Vector2>();
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePositionScreen);
+            }
+        }
+
+        public bool HasItemInHand()
+        {
+            return inventoryManager.GetHeldItem() != null;
+        }
+        
+        public Vector2 GetMousePosition()
+        {
+            return mousePosition;
         }
     }
 }

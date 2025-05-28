@@ -53,12 +53,12 @@ namespace Assets.Scripts.Inventory
             return null;
         }
 
-        public void UseHeldItem(GameObject user)
+        public void UseHeldItem(GameObject user, Vector2 position)
         {
             Item item = GetHeldItem();
             if (item != null)
             {
-                item.Use(user);
+                item.Use(user, position);
                 RemoveItem(item);
             }
             else

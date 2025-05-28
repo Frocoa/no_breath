@@ -5,27 +5,15 @@ namespace Assets.Scripts.Inventory
 {
     public class ItemFactory : MonoBehaviour {
 
-        [SerializeField]
-        private Tilemap objectTilemap;
-        public static ItemFactory Instance;
-
-        private void Awake() {
-            // Singleton básico
-            if (Instance == null) {
-                Instance = this;
-            } else {
-                Destroy(gameObject);
-            }
-        }
-
-        private Vector3 WorldToCell(Vector3 worldPosition)
+        public static GameObject SpawnItem(GameObject prefab, Vector3 position)
         {
-            Vector3Int cellPosition = objectTilemap.WorldToCell(worldPosition);
-            return objectTilemap.GetCellCenterWorld(cellPosition);
+            Vector3 cellPosition = MainGrid.Instance.WorldToCell(position);
+            GameObject obj = Instantiate(prefab, cellPosition, Quaternion.identity);
+            return obj;
         }
-        public GameObject SpawnItem(GameObject prefab, Vector3 position)
+        public static GameObject SpawnItemWorld(GameObject prefab, Vector3 position)
         {
-            Vector3 cellPosition = WorldToCell(position);
+            Vector3 cellPosition = MainGrid.Instance.WorldToCell(position);
             GameObject obj = Instantiate(prefab, cellPosition, Quaternion.identity);
             return obj;
         }
