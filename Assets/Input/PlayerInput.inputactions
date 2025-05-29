@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Open Inventory",
+                    "type": "Button",
+                    "id": "1124a8dc-4249-4e18-aae5-aabeb6081f45",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -121,7 +130,7 @@
                 {
                     "name": "",
                     "id": "3a6ca9c2-6053-484f-92ae-9c7921e048e7",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -148,6 +157,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Place Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5db75297-48ff-4b6b-aa5a-e01f9bb41ea7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

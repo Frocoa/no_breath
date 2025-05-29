@@ -7,12 +7,8 @@ namespace Assets.Scripts.Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterInputcontroller : MonoBehaviour
     {
-        InventoryManager inventoryManager;
-
-        [SerializeField] private Seed grassSeed;
+        [SerializeField] InventoryManager inventoryManager;
         [SerializeField] private float speed = 10f;
-
-        [SerializeField] private Grid grid;
 
         private Vector2 moveInput;
         private Vector2 mousePosition;
@@ -20,11 +16,7 @@ namespace Assets.Scripts.Player
 
         private void Awake()
         {
-            inventoryManager = InventoryManager.Instance;
-            inventoryManager.AddItem(grassSeed);
-
             rb = GetComponent<Rigidbody2D>();
-
         }
 
         private void FixedUpdate()
@@ -47,7 +39,7 @@ namespace Assets.Scripts.Player
 
         public void UseItem(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
+            if (context.phase == InputActionPhase.Performed && !IsInventoryOpen())
             {
 
                 inventoryManager.UseHeldItem(gameObject, mousePosition);
@@ -60,9 +52,9 @@ namespace Assets.Scripts.Player
             {
                 float scrollValue = context.ReadValue<float>();
                 if (scrollValue > 0)
-                    inventoryManager.ChangeItem(1);
+                    inventoryManager.ChangeHotbarItem(-1);
                 else if (scrollValue < 0)
-                    inventoryManager.ChangeItem(-1);
+                    inventoryManager.ChangeHotbarItem(1);
             }
         }
         public void MousePositionUpdate(InputAction.CallbackContext context)
@@ -78,10 +70,23 @@ namespace Assets.Scripts.Player
         {
             return inventoryManager.GetHeldItem() != null;
         }
-        
+
         public Vector2 GetMousePosition()
         {
             return mousePosition;
+        }
+
+        public void ToggleInventory(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                inventoryManager.ToggleInventory();
+            }
+        }
+        
+        public bool IsInventoryOpen()
+        {
+            return inventoryManager.IsInventoryOpen;
         }
     }
 }
