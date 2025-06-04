@@ -39,9 +39,10 @@ namespace Assets.Scripts.Player
 
         public void UseItem(InputAction.CallbackContext context)
         {
+            MainGrid.Instance.GetTileInBackgroundLayer(mousePosition);
+
             if (context.phase == InputActionPhase.Performed && !IsInventoryOpen())
             {
-
                 inventoryManager.UseHeldItem(gameObject, mousePosition);
             }
         }
@@ -83,10 +84,17 @@ namespace Assets.Scripts.Player
                 inventoryManager.ToggleInventory();
             }
         }
-        
+
         public bool IsInventoryOpen()
         {
             return inventoryManager.IsInventoryOpen;
+        }
+
+        public bool CanUseItem()
+        {
+            Item heldItem = inventoryManager.GetHeldItem();
+            if (heldItem == null) return false;
+            return heldItem.IsUsable(gameObject, mousePosition);
         }
     }
 }

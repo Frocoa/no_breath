@@ -1,28 +1,36 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Crop : MonoBehaviour
 {
 
     [SerializeField]
     private Sprite[] growthStageSprites;
-    private SpriteRenderer spriteRenderer;
+    private Tilemap tilemap;
     private int growthStage = 0;
-    private int timeToGrow = 5;
+    private readonly int timeToGrow = 5;
     private int stageProgress = 0;
-    private int maxGrowthStage = 5;
-
-
-    void Awake()
+    private readonly int maxGrowthStage = 5;
+    private Vector3Int position;
+    public void Initialize(Tilemap tilemap, Vector3 worldPosition)
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        this.tilemap = tilemap;
+        position = tilemap.WorldToCell(worldPosition);
+
+
+        Tile tile = ScriptableObject.CreateInstance<Tile>();
+        tile.sprite = growthStageSprites[growthStage];
+        tilemap.SetTile(position, tile);
+    }
+
+    public void Remove()
+    {
+        // *shrug*
     }
     void Start()
     {
         TickManager.Instance.SubscribeToRandomTick(Grow);
-
     }
-
-
     private void Grow()
     {
         if (growthStage >= maxGrowthStage) return;
@@ -32,8 +40,9 @@ public class Crop : MonoBehaviour
         {
             growthStage++;
             stageProgress = 0;
-            spriteRenderer.sprite = growthStageSprites[growthStage];
-            Debug.Log("Crop has grown to stage: " + growthStage);
+            Tile t = ScriptableObject.CreateInstance<Tile>();
+            t.sprite = growthStageSprites[growthStage];
+            tilemap.SetTile(position, t);
         }
     }
 }

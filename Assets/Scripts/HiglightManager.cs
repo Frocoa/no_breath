@@ -13,7 +13,7 @@ public class HiglightManager : MonoBehaviour
 
     void Update()
     {
-        if (player.HasItemInHand() && !player.IsInventoryOpen())
+        if (player.CanUseItem() && !player.IsInventoryOpen())
         {
             Vector2 mouseWorldPos = player.GetMousePosition();
             Vector3Int cellPosition = Vector3Int.FloorToInt(MainGrid.Instance.WorldToCell(mouseWorldPos));

@@ -71,7 +71,7 @@ namespace Assets.Scripts.Inventory
 
         public void OnDrop(PointerEventData eventData)
         {
-            Debug.Log($"Dropped on slot: {gameObject.name}");
+            // Debug.Log($"Dropped on slot: {gameObject.name}");
             if (!HasItem)
             {
                 var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
@@ -89,7 +89,6 @@ namespace Assets.Scripts.Inventory
 
         public void AddStack(int amount)
         {
-            Debug.Log($"Adding stack of size: {amount} to slot: {gameObject.name}");
             var invItem = InventoryItem;
             if (invItem != null)
             {

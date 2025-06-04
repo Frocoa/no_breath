@@ -8,6 +8,7 @@ namespace Assets.Scripts.Inventory
         private int selectedSlot = 0;
         [SerializeField] private InventorySlot[] inventorySlots;
         [SerializeField] private Seed grassSeed;
+        [SerializeField] private Hoe hoeTool;
         [SerializeField] private GameObject inventoryItemPrefab;
         [SerializeField]private GameObject inventoryUI;
 
@@ -63,7 +64,7 @@ namespace Assets.Scripts.Inventory
             AddItem(grassSeed, 1);
             AddItem(grassSeed, 1);
             AddItem(grassSeed, 1);
-            AddItem(grassSeed, 2);
+            AddItem(hoeTool, 1);
             inventorySlots[selectedSlot].SetSelected(true);
         }
 
@@ -116,8 +117,8 @@ namespace Assets.Scripts.Inventory
             Item item = GetHeldItem();
             if (item != null)
             {
-                item.Use(user, position);
-                RemoveSelectedItem(1);
+                if (item.Use(user, position) && item.IsConsumable)
+                    RemoveSelectedItem(1);
             }
             else
             {

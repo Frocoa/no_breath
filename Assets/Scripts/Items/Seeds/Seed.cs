@@ -5,17 +5,20 @@ using Assets.Scripts.Inventory;
 public class Seed : Item
 {
     [SerializeField]
-    private GameObject plant;
+    private Crop plant;
 
-    public GameObject Plant => plant;
+    public Crop Plant => plant;
 
-    public override void Use(GameObject player, Vector2 position)
+    public override void UseCore(GameObject player, Vector2 position)
     {
         ItemFactory.SpawnItem(plant, position);
     }
-    public override void Use(GameObject player)
+
+    public override bool IsUsable(GameObject player, Vector2 position)
     {
-        Vector3 position = player.transform.position;
-        ItemFactory.SpawnItem(plant, position);
+        bool plantableTile = MainGrid.Instance.GetTileInBackgroundLayer(position) is PlantableTile;
+        bool hasSpace = MainGrid.Instance.GetTileInObjectsLayer(position) == null;
+
+        return plantableTile && hasSpace;
     }
 }

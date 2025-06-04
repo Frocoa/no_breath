@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grass
   icon: {fileID: 128372630, guid: cf548d21b47a1ef4c8bb91dc8e79b740, type: 3}
-  stackable: 1
-  plant: {fileID: 6813505097451062511, guid: f99455f1d72e0a84780bb5704c6195e2, type: 3}
+  maxStack: 2
+  isConsumable: 1
+  plant: {fileID: -7570133260382457301, guid: f99455f1d72e0a84780bb5704c6195e2, type: 3}

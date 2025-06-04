@@ -48,7 +48,7 @@ namespace Assets.Scripts.Inventory
             image.raycastTarget = false;
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
-            Debug.Log("Drag started on: " + gameObject.name);
+            // Debug.Log("Drag started on: " + gameObject.name);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -56,14 +56,14 @@ namespace Assets.Scripts.Inventory
             Vector2 mousePosition = Mouse.current.position.ReadValue();
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z));
             transform.position = worldPosition;
-            Debug.Log("Dragging: " + gameObject.name);
+            // Debug.Log("Dragging: " + gameObject.name);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             image.raycastTarget = true;
             transform.SetParent(parentAfterDrag);
-            Debug.Log("Drag ended on: " + gameObject.name);
+            // Debug.Log("Drag ended on: " + gameObject.name);
         }
     }
 }
