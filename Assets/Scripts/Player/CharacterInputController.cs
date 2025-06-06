@@ -47,6 +47,23 @@ namespace Assets.Scripts.Player
             }
         }
 
+        public void Interact(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed && !IsInventoryOpen())
+            {
+                WorldInteractable interactable = MainGrid.Instance.GetObjectAtPosition(mousePosition);
+
+                if (interactable != null)
+                {
+                    interactable.Interact();
+                }
+                else
+                {
+                    Debug.Log("No object to interact with at this position.");
+                }
+            }
+        }
+
         public void ScrollItem(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)

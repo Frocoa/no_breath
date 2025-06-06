@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Crop : MonoBehaviour
+public class Crop : MonoBehaviour, WorldInteractable
 {
 
     [SerializeField]
@@ -15,7 +15,7 @@ public class Crop : MonoBehaviour
     public void Initialize(Tilemap tilemap, Vector3 worldPosition)
     {
         this.tilemap = tilemap;
-        position = tilemap.WorldToCell(worldPosition);
+        position = tilemap.WorldToCell(worldPosition); 
 
 
         Tile tile = ScriptableObject.CreateInstance<Tile>();
@@ -44,5 +44,16 @@ public class Crop : MonoBehaviour
             t.sprite = growthStageSprites[growthStage];
             tilemap.SetTile(position, t);
         }
+    }
+
+    public void Interact()
+    {
+        if (growthStage < maxGrowthStage)
+        {
+            Debug.Log("Crop is not ready to harvest yet.");
+            return;
+        }
+
+        Debug.Log("Harvesting crop!");
     }
 }

@@ -10,6 +10,7 @@ namespace Assets.Scripts.Inventory
             Vector3 cellPosition = MainGrid.Instance.WorldToCell(position);
             Crop obj = Instantiate(prefab, cellPosition, Quaternion.identity);
             obj.Initialize(MainGrid.Instance.GetObjectsTileMap(), position);
+            MainGrid.Instance.RegisterObject(position, obj);
             return obj;
         }
         public static GameObject SpawnItemWorld(GameObject prefab, Vector3 position)

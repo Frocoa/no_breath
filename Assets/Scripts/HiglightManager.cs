@@ -16,7 +16,7 @@ public class HiglightManager : MonoBehaviour
         if (player.CanUseItem() && !player.IsInventoryOpen())
         {
             Vector2 mouseWorldPos = player.GetMousePosition();
-            Vector3Int cellPosition = Vector3Int.FloorToInt(MainGrid.Instance.WorldToCell(mouseWorldPos));
+            Vector3Int cellPosition = MainGrid.Instance.WorldToCellPosition(mouseWorldPos);
 
             // Only update if the cell has changed
             if (lastHighlightedCell == null || lastHighlightedCell.Value != cellPosition)

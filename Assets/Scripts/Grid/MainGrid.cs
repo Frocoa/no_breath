@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,6 +10,30 @@ public class MainGrid : MonoBehaviour
     [SerializeField] Tilemap objectsLayer;
     [SerializeField] Tilemap highLayer;
     public static MainGrid Instance { get; private set; }
+
+    private readonly Dictionary<Vector3Int, WorldInteractable> objectMap = new();
+
+    public void RegisterObject(Vector3 position, WorldInteractable interactable)
+    {
+        Vector3Int cellPosition = mainTilemap.WorldToCell(position);
+        objectMap[cellPosition] = interactable;
+    }
+
+    public void UnregisterObject(Vector3 position)
+    {
+        Vector3Int cellPosition = mainTilemap.WorldToCell(position);
+        objectMap.Remove(cellPosition);
+    }
+
+    public WorldInteractable GetObjectAtPosition(Vector3 position)
+    {
+        Vector3Int cellPosition = mainTilemap.WorldToCell(position);
+        if (objectMap.TryGetValue(cellPosition, out WorldInteractable interactable))
+        {
+            return interactable;
+        }
+        return null;
+    }
 
     private void Awake()
     {
@@ -25,6 +50,12 @@ public class MainGrid : MonoBehaviour
     public Tilemap GetObjectsTileMap()
     {
         return objectsLayer;
+    }
+
+
+    public Vector3Int WorldToCellPosition(Vector3 worldPosition)
+    {
+        return mainTilemap.WorldToCell(worldPosition);
     }
 
     public Vector3 WorldToCell(Vector3 worldPosition)
