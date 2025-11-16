@@ -25,7 +25,9 @@ public class Crop : MonoBehaviour, WorldInteractable
 
     public void Remove()
     {
-        // *shrug*
+        tilemap.SetTile(position, null);
+        MainGrid.Instance.UnregisterObject(position);
+        Destroy(gameObject);
     }
     void Start()
     {
@@ -52,6 +54,10 @@ public class Crop : MonoBehaviour, WorldInteractable
         {
             Debug.Log("Crop is not ready to harvest yet.");
             return;
+        }
+        else
+        {
+            Remove();
         }
 
         Debug.Log("Harvesting crop!");

@@ -19,9 +19,8 @@ public class MainGrid : MonoBehaviour
         objectMap[cellPosition] = interactable;
     }
 
-    public void UnregisterObject(Vector3 position)
+    public void UnregisterObject(Vector3Int cellPosition)
     {
-        Vector3Int cellPosition = mainTilemap.WorldToCell(position);
         objectMap.Remove(cellPosition);
     }
 
